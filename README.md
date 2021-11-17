@@ -1,2 +1,2 @@
 # nuxtjs-wolvepack
-NuxtJS / Javascript / SCSS
+NuxtJS / Javascript / SCSS / BootstrapVue
