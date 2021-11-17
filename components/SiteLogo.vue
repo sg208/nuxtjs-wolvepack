@@ -1,5 +1,5 @@
 <template>
-  <img src="~/assets/images/wolfpack-logo.png" class="logo">
+  <img src="~/assets/images/wolfpack-logo.png" class="logo" alt="Wolvepack logo">
 </template>
 
 <style lang="scss" scoped>

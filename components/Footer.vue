@@ -1,14 +1,18 @@
 <template>
   <footer>
     <div class="container">
-      Crafted with love by github.com/sg208
+      Crafted with love by <a href="https://github.com/sg208" target="_blank">github.com/sg208</a> | {{ currentYear }}
     </div>
   </footer>
 </template>
 
 <script>
 export default {
-
+  data () {
+    return {
+      currentYear: new Date().getFullYear()
+    }
+  }
 }
 </script>
 
