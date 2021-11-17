@@ -1,7 +1,7 @@
 <template>
   <main class="container">
-    <b-tabs content-class="mt-3">
-      <TabContent v-for="tab in tabs" :key="tab.id" :tabdetail="tab" />
+    <b-tabs class="gap" content-class="mt-3">
+      <TabContent v-for="tab in tabs" :key="tab.id" :tabdetail="tab" keep-alive />
     </b-tabs>
   </main>
 </template>
@@ -32,3 +32,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.gap {
+    margin-top: 2.5rem;
+}
+</style>
