@@ -86,8 +86,13 @@ export default {
   props: ['tabdetail'],
   data () {
     return {
+<<<<<<< HEAD
       endpoint: `https://join.wolfpackit.nl/api/v1/${this.tabdetail.text.plural}`,
       // endpoint: `http://localhost:3000/${this.tabdetail.text.plural}`,
+=======
+      // endpoint: `https://join.wolfpackit.nl/api/v1/${this.tabdetail.text.plural}`,
+      endpoint: `http://localhost:3000/${this.tabdetail.text.plural}`,
+>>>>>>> 68f304f8a7dd057732f3e24faf2ed75aa5a78fb1
       endpointOptions: {
         method: 'GET',
         headers: {
