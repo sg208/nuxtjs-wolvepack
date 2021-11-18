@@ -1,7 +1,19 @@
 <template>
   <b-tab :title="tabdetail.text.heading">
-    <RandomAlert v-if="$fetchState.pending" :errortext="`Fetching ${tabdetail.text.plural}`" />
-    <RandomAlert v-else-if="$fetchState.error" :errortext="`An error occurred, while fetching ${tabdetail.text.plural} data :(`" />
+    <RandomAlert
+      v-if="$fetchState.pending"
+      :content="{
+        text: `Fetching ${tabdetail.text.plural}`,
+        dismissible: false
+      }"
+    />
+    <RandomAlert
+      v-else-if="$fetchState.error"
+      :content="{
+        text: `An error occurred, while fetching ${tabdetail.text.plural} data :(`,
+        dismissible: false
+      }"
+    />
     <div v-else>
       <b-row class="mini-gap">
         <b-col sm="12" md="9">
@@ -32,9 +44,21 @@
         />
       </b-row>
 
-      <RandomAlert v-if="showDeletedRecordMessage" :errortext="`Record has been deleted, thx :)`" />
+      <RandomAlert
+        v-if="showDeletedRecordMessage"
+        :content="{
+          text: `${removedRecordName || tabdetail.text.singular} has been deleted from the ${tabdetail.text.plural} collection, thx :)`,
+          dismissible: true
+        }"
+      />
 
-      <RandomAlert v-if="!tabcontent.length" :errortext="`There are no ${tabdetail.text.plural} data available at this time. Maybe you should add a new one :)`" />
+      <RandomAlert
+        v-if="!tabcontent.length"
+        :content="{
+          text: `There are no ${tabdetail.text.plural} data available at this time. Maybe you should add a new one :)`,
+          dismissible: false
+        }"
+      />
       <ul v-else class="list">
         <li v-for="item in tabcontent" :key="item.id">
           <b-row>
@@ -102,20 +126,22 @@ export default {
         }
       },
       tabcontent: [],
-      showDeletedRecordMessage: false
+      showDeletedRecordMessage: false,
+      removedRecordName: null
     }
   },
   async fetch () {
     this.tabcontent = await fetch(this.endpoint, this.endpointOptions).then(res => res.json())
   },
   methods: {
-    async removeRecord (id, method = 'get') {
+    async removeRecord (id, method = 'get', name) {
       await fetch(`${this.endpoint}/${id}`, {
         method,
         headers: this.endpointOptions.headers
       })
       await this.$nuxt.refresh()
       this.showDeletedRecordMessage = true
+      this.removedRecordName = name
     },
     showTempModal (modalContent) {
       this.$bvModal.msgBoxOk(modalContent, {
@@ -147,7 +173,7 @@ export default {
       })
         .then((clickResult) => {
           if (clickResult) {
-            this.removeRecord(id, apiMethod)
+            this.removeRecord(id, apiMethod, name)
           }
         })
         .catch((err) => {

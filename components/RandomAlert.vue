@@ -1,7 +1,7 @@
 <template>
   <div>
-    <b-alert variant="danger" :show="dismissCountDown" dismissible>
-      {{ errortext }}
+    <b-alert variant="danger" :show="dismissCountDown" :dismissible="content.dismissible">
+      {{ content.text }}
     </b-alert>
   </div>
 </template>
@@ -9,10 +9,10 @@
 <script>
 export default {
   // eslint-disable-next-line vue/require-prop-types
-  props: ['errortext'],
+  props: ['content'],
   data () {
     return {
-      dismissCountDown: 8
+      dismissCountDown: this.content.dismissible ? 8 : 0
     }
   }
 }
