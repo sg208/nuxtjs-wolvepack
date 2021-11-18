@@ -80,11 +80,17 @@ export default {
   methods: {
     async onSubmit (event) {
       event.preventDefault()
+      const { name, gender, birthday, lat, lng } = this.form
+      const filteredFields = this.content.title === 'wolve' ? { name, gender, birthday } : { name, lat, lng }
 
       await fetch(this.content.endpoint.url, {
         method: 'POST',
-        headers: this.content.endpoint.headers,
-        body: JSON.stringify(this.form)
+        headers: {
+          ...this.content.endpoint.headers,
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+        },
+        body: JSON.stringify(filteredFields)
       })
       // TODO Need to add alert to confirm submission has been added with auto dissapear in 5 secs
       await this.$nuxt.refresh()

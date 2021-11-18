@@ -15,6 +15,7 @@
             block
             variant="success"
             size="lg"
+            :disabled="tabdetail.id === 'wolve'"
           >
             + Add new {{ tabdetail.text.singular }}
           </b-button>
@@ -37,31 +38,37 @@
       <ul v-else class="list">
         <li v-for="item in tabcontent" :key="item.id">
           <b-row>
-            <b-col sm="12" md="10">
+            <b-col sm="12" md="8">
               <h2 class="h5">
                 <b-badge variant="secondary">
                   {{ item.id }}
                 </b-badge> {{ item.name }}
               </h2>
-              <div v-if="item.gender" class="padding-bottom-1">
+              <!-- Additional detail for Wolves -->
+              <p v-if="item.gender">
                 Gender: {{ item.gender }} | Birthday: {{ item.birthday }}
-              </div>
-              <div v-else class="padding-bottom-1">
+              </p>
+              <!-- Additional detail for Packs -->
+              <p v-else>
                 Lat: {{ item.lat }}, Lng: {{ item.lng }}
-              </div>
+              </p>
             </b-col>
 
-            <b-col sm="12" md="2" class="d-flex align-items-center">
+            <b-col sm="12" md="4" class="d-flex align-items-center">
               <b-button-group style="width: 100%">
-                <b-button v-b-modal="`modal-update-${tabdetail.id}-${item.id}`" variant="outline-success" :aria-label="`Update ${item.name}`">
+                <b-button variant="outline-success" :aria-label="`Update ${item.name}`" @click="showTempModal(`You can update ${item.name} data soon, just not today!`)">
                   Update
                 </b-button>
-                <b-button variant="outline-danger" :aria-label="`Remove ${item.name}`" @click="removeRecord(item.id, 'delete')">
+                <b-button variant="outline-success" :aria-label="`Add to pack ${item.name}`" @click="showTempModal(`You can add ${tabdetail.id === 'wolve' ? `${item.name} to packs` : 'wolve to this pack'}, just not today!`)">
+                  Add {{ tabdetail.id === 'wolve' ? 'to packs' : 'wolve' }}
+                </b-button>
+                <b-button variant="outline-danger" :aria-label="`Remove ${item.name}`" @click="confirmRemoveRecord(item.id, 'delete', item.name, tabdetail.text.plural)">
                   Remove
                 </b-button>
               </b-button-group>
 
-              <ModalUpdateExistingRecord
+              <!-- TODO Need to complete the updating functionality -->
+              <!-- <ModalUpdateExistingRecord
                 :content="{
                   id: `modal-update-${tabdetail.id}-${item.id}`,
                   title: tabdetail.text.singular,
@@ -71,7 +78,7 @@
                     headers: endpointOptions.headers
                   }
                 }"
-              />
+              /> -->
             </b-col>
           </b-row>
         </li>
@@ -86,13 +93,7 @@ export default {
   props: ['tabdetail'],
   data () {
     return {
-<<<<<<< HEAD
       endpoint: `https://join.wolfpackit.nl/api/v1/${this.tabdetail.text.plural}`,
-      // endpoint: `http://localhost:3000/${this.tabdetail.text.plural}`,
-=======
-      // endpoint: `https://join.wolfpackit.nl/api/v1/${this.tabdetail.text.plural}`,
-      endpoint: `http://localhost:3000/${this.tabdetail.text.plural}`,
->>>>>>> 68f304f8a7dd057732f3e24faf2ed75aa5a78fb1
       endpointOptions: {
         method: 'GET',
         headers: {
@@ -110,11 +111,49 @@ export default {
   methods: {
     async removeRecord (id, method = 'get') {
       await fetch(`${this.endpoint}/${id}`, {
-        method: method.toUpperCase(),
+        method,
         headers: this.endpointOptions.headers
       })
       await this.$nuxt.refresh()
       this.showDeletedRecordMessage = true
+    },
+    showTempModal (modalContent) {
+      this.$bvModal.msgBoxOk(modalContent, {
+        centered: true,
+        buttonSize: 'lg',
+        size: 'md',
+        okTitle: 'OK, thx'
+      })
+        .then((clickValue) => {
+          // eslint-disable-next-line no-console
+          console.log(clickValue)
+        })
+        .catch((err) => {
+          // eslint-disable-next-line no-console
+          console.log(err)
+        })
+    },
+    confirmRemoveRecord (id, apiMethod, name, collection) {
+      this.$bvModal.msgBoxConfirm(`Please confirm you want to delete ${name} from the ${collection} collection?`, {
+        title: 'Please confirm',
+        size: 'md',
+        buttonSize: 'lg',
+        okVariant: 'danger',
+        okTitle: 'YES',
+        cancelTitle: 'Cancel',
+        footerClass: 'p-2',
+        hideHeaderClose: false,
+        centered: true
+      })
+        .then((clickResult) => {
+          if (clickResult) {
+            this.removeRecord(id, apiMethod)
+          }
+        })
+        .catch((err) => {
+          // eslint-disable-next-line no-console
+          console.log(err)
+        })
     }
   }
 }
