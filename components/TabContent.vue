@@ -133,13 +133,14 @@ export default {
   async fetch () {
     this.tabcontent = await fetch(this.endpoint, this.endpointOptions).then(res => res.json())
   },
+  fetchOnServer: false,
   methods: {
     async removeRecord (id, method = 'get', name) {
       await fetch(`${this.endpoint}/${id}`, {
         method,
         headers: this.endpointOptions.headers
       })
-      await this.$nuxt.refresh()
+      //await this.$nuxt.refresh()
       this.showDeletedRecordMessage = true
       this.removedRecordName = name
     },
