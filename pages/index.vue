@@ -9,8 +9,3 @@ export default {
   layout: 'default'
 }
 </script>
-<style>
-body {
-  overflow: scroll;
-}
-</style>

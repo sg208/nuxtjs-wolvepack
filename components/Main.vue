@@ -7,28 +7,13 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
-  data () {
-    return {
-      tabs: [
-        {
-          id: 'wolve',
-          text: {
-            heading: 'Wolves',
-            singular: 'wolve',
-            plural: 'wolves'
-          }
-        },
-        {
-          id: 'pack',
-          text: {
-            heading: 'Packs',
-            singular: 'pack',
-            plural: 'packs'
-          }
-        }
-      ]
-    }
+  computed: {
+    ...mapState([
+      'tabs'
+    ])
   }
 }
 </script>
