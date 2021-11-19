@@ -1,7 +1,7 @@
 <template>
   <main class="container">
     <b-tabs class="gap" content-class="mt-3">
-      <TabContent v-for="tab in tabs" :key="tab.id" :tabdetail="tab" keep-alive />
+      <TabContent v-for="tab in tabs" :key="tab.id" :tabdetail="tab" />
     </b-tabs>
   </main>
 </template>

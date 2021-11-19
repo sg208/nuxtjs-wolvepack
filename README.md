@@ -11,8 +11,11 @@ CI/CD
 ## Deployed environments
 
 
-- DEV Env: https://d74e2920.nuxtjs-wolvepack.pages.dev/
-- PRD End: Coming soon!!!
+DEV Env: https://dev-wolfpack.engg.me/
+* This env is based on DEV branch which has the most updated features, ahead of Master branch.
+
+PRD Env
+* Coming soon
 
 ## Build Setup
 
