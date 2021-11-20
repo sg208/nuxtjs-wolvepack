@@ -8,14 +8,19 @@ Stacks
 CI/CD
 - Cloudflare Pages & Workers
 
-## Deployed environments
+## Deployments
 
+The first three hours of development
+* Preview URL: https://b72d070f.nuxtjs-wolvepack.pages.dev/
+* Branch: [first-three-hours](https://github.com/sg208/nuxtjs-wolvepack/tree/first-three-hours)
 
-DEV Env: https://dev-wolfpack.engg.me/
-* This env is based on DEV branch which has the most updated features, ahead of Master branch.
+Production
+* Preview URL: https://wolfpack.engg.me
+* Branch: Master (latest version with latest features and fixes)
 
-PRD Env
-* Coming soon
+Development
+* Preview URL: https://970859f5.nuxtjs-wolvepack.pages.dev/
+* Branch: [development](https://github.com/sg208/nuxtjs-wolvepack/tree/development)
 
 ## Build Setup
 
