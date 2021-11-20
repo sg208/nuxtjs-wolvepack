@@ -3,15 +3,13 @@
     <RandomAlert
       v-if="$fetchState.pending"
       :content="{
-        text: `Fetching ${tabdetail.text.plural}`,
-        dismissible: false
+        text: `Fetching ${tabdetail.text.plural}`
       }"
     />
     <RandomAlert
       v-else-if="$fetchState.error"
       :content="{
-        text: `An error occurred, while fetching ${tabdetail.text.plural} data :(`,
-        dismissible: false
+        text: `An error occurred, while fetching ${tabdetail.text.plural} data :(`
       }"
     />
     <div v-else>
@@ -56,7 +54,6 @@
         v-if="!tabcontent.length"
         :content="{
           text: `There are no ${tabdetail.text.plural} data available at this time. Maybe you should add a new one :)`,
-          dismissible: false
         }"
       />
       <ul v-else class="list">
@@ -140,7 +137,7 @@ export default {
         method,
         headers: this.endpointOptions.headers
       })
-      //await this.$nuxt.refresh()
+      // await this.$nuxt.refresh()
       this.showDeletedRecordMessage = true
       this.removedRecordName = name
     },

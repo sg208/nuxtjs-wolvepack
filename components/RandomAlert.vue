@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-alert variant="danger" :show="dismissCountDown" :dismissible="content.dismissible">
+    <b-alert variant="danger" :show="dismissCountDown" :dismissible="content.dismissible || false">
       {{ content.text }}
     </b-alert>
   </div>
@@ -12,7 +12,7 @@ export default {
   props: ['content'],
   data () {
     return {
-      dismissCountDown: this.content.dismissible ? 8 : 0
+      dismissCountDown: this.content.dismissible ? 5 : 0
     }
   }
 }
