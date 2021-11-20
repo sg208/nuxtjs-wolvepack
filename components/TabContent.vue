@@ -111,16 +111,13 @@ export default {
   // eslint-disable-next-line vue/require-prop-types
   props: ['tabdetail'],
   data () {
-    const API_URL = process.env.NODE_ENV === 'development' ? 'http://localhost:3000/' : process.env.API_BASE_URL
-    const API_SECRET = process.env.NODE_ENV === 'development' ? 'NOT FOUND' : process.env.API_SECRET_KEY
-
     return {
-      endpoint: `${API_URL}${this.tabdetail.text.plural}`,
+      endpoint: `https://join.wolfpackit.nl/api/v1/${this.tabdetail.text.plural}`,
       endpointOptions: {
         method: 'GET',
         headers: {
           'content-type': 'application/json',
-          Authorization: `Bearer ${API_SECRET}`
+          Authorization: `Bearer ${process.env.API_SECRET_KEY}`
         }
       },
       tabcontent: [],
