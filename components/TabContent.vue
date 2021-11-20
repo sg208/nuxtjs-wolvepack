@@ -117,16 +117,27 @@ export default {
         method: 'GET',
         headers: {
           'content-type': 'application/json',
-          Authorization: 'Bearer 9bAqXRPplyiGfF6n81NVUGpAqeLI1QHw46aqICVL1BLaGI6'
+          Authorization: `Bearer ${process.env.API_SECRET_KEY}`
         }
       },
       tabcontent: [],
       showDeletedRecordMessage: false,
-      removedRecordName: null
+      removedRecordName: null,
+      errorStatusCode: null,
+      errorMessage: null
     }
   },
   async fetch () {
-    this.tabcontent = await fetch(this.endpoint, this.endpointOptions).then(res => res.json())
+    this.tabcontent = await fetch(this.endpoint, this.endpointOptions)
+      .then((res) => {
+        if (res.ok) {
+          return res.json()
+        } else {
+          throw new Error('Something went wrong')
+        }
+      }).catch((error) => {
+        this.errorMessage = error.message
+      })
   },
   fetchOnServer: false,
   methods: {
