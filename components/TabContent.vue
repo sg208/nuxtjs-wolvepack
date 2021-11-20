@@ -2,9 +2,7 @@
   <b-tab :title="tabdetail.text.heading">
     <RandomAlert
       v-if="$fetchState.pending"
-      :content="{
-        text: `Fetching ${tabdetail.text.plural}`
-      }"
+      :content="{ text: `Fetching ${tabdetail.text.plural}`}"
     />
     <RandomAlert
       v-else-if="$fetchState.error"
@@ -137,9 +135,11 @@ export default {
         method,
         headers: this.endpointOptions.headers
       })
-      // await this.$nuxt.refresh()
-      this.showDeletedRecordMessage = true
-      this.removedRecordName = name
+      await this.$nuxt.refresh()
+      this.$nextTick(() => {
+        this.removedRecordName = name
+        this.showDeletedRecordMessage = true
+      })
     },
     showTempModal (modalContent) {
       this.$bvModal.msgBoxOk(modalContent, {
