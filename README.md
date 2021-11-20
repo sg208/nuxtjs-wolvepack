@@ -6,7 +6,8 @@ Stacks
 - SCSS
 
 CI/CD
-- Cloudflare Pages & Workers
+- Cloudflare Pages & Workers (Production)
+- Render.com (Development)
 
 ## Deployments
 
@@ -19,7 +20,7 @@ Production
 * Branch: Master (latest version with latest features and fixes)
 
 Development
-* Preview URL: https://970859f5.nuxtjs-wolvepack.pages.dev/
+* Preview URL: https://dev-wolfpack.engg.me
 * Branch: [development](https://github.com/sg208/nuxtjs-wolvepack/tree/development)
 
 ## Build Setup
