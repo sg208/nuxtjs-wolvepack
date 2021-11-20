@@ -1,9 +1,12 @@
 <template>
   <b-tab :title="tabdetail.text.heading">
-    <RandomAlert
+    <p v-if="$fetchState.pending">
+      SOMEThNG IS WRONG
+    </p>
+    <!-- <RandomAlert
       v-if="$fetchState.pending"
       :content="{ text: `Fetching ${tabdetail.text.plural}`}"
-    />
+    /> -->
     <RandomAlert
       v-else-if="$fetchState.error"
       :content="{
@@ -111,13 +114,14 @@ export default {
   // eslint-disable-next-line vue/require-prop-types
   props: ['tabdetail'],
   data () {
+    // 9bAqXRPplyiGfF6n81NVUGpAqeLI1QHw46aqICVL1BLaGI6
     return {
-      endpoint: `https://join.wolfpackit.nl/api/v1/${this.tabdetail.text.plural}`,
+      endpoint: `${process.env.API_BASE_URL || 'http://localhost:3000/'}${this.tabdetail.text.plural}`,
       endpointOptions: {
         method: 'GET',
         headers: {
           'content-type': 'application/json',
-          Authorization: 'Bearer 9bAqXRPplyiGfF6n81NVUGpAqeLI1QHw46aqICVL1BLaGI6'
+          Authorization: `Bearer ${process.env.API_SECRET_KEY || ''}`
         }
       },
       tabcontent: [],
