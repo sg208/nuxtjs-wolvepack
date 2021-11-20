@@ -114,14 +114,15 @@ export default {
   // eslint-disable-next-line vue/require-prop-types
   props: ['tabdetail'],
   data () {
-    // 9bAqXRPplyiGfF6n81NVUGpAqeLI1QHw46aqICVL1BLaGI6
+    const { API_BASE_URL, API_SECRET_KEY } = process.env
+
     return {
-      endpoint: `${process.env.API_BASE_URL || 'http://localhost:3000/'}${this.tabdetail.text.plural}`,
+      endpoint: `${typeof API_BASE_URL !== 'undefined' ? API_BASE_URL : 'http://localhost:3000/'}${this.tabdetail.text.plural}`,
       endpointOptions: {
         method: 'GET',
         headers: {
           'content-type': 'application/json',
-          Authorization: `Bearer ${process.env.API_SECRET_KEY || ''}`
+          Authorization: `Bearer ${typeof API_SECRET_KEY !== 'undefined' ? API_SECRET_KEY : ''}`
         }
       },
       tabcontent: [],
