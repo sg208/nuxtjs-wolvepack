@@ -1,12 +1,9 @@
 <template>
   <b-tab :title="tabdetail.text.heading">
-    <p v-if="$fetchState.pending">
-      SOMEThNG IS WRONG
-    </p>
-    <!-- <RandomAlert
+    <RandomAlert
       v-if="$fetchState.pending"
       :content="{ text: `Fetching ${tabdetail.text.plural}`}"
-    /> -->
+    />
     <RandomAlert
       v-else-if="$fetchState.error"
       :content="{
@@ -114,24 +111,36 @@ export default {
   // eslint-disable-next-line vue/require-prop-types
   props: ['tabdetail'],
   data () {
-    const { API_BASE_URL, API_SECRET_KEY } = process.env
+    const API_URL = process.env.NODE_ENV === 'development' ? 'http://localhost:3000/' : process.env.API_BASE_URL
+    const API_SECRET = process.env.NODE_ENV === 'development' ? 'NOT FOUND' : process.env.API_SECRET_KEY
 
     return {
-      endpoint: `${typeof API_BASE_URL !== 'undefined' ? API_BASE_URL : 'http://localhost:3000/'}${this.tabdetail.text.plural}`,
+      endpoint: `${API_URL}${this.tabdetail.text.plural}`,
       endpointOptions: {
         method: 'GET',
         headers: {
           'content-type': 'application/json',
-          Authorization: `Bearer ${typeof API_SECRET_KEY !== 'undefined' ? API_SECRET_KEY : ''}`
+          Authorization: `Bearer ${API_SECRET}`
         }
       },
       tabcontent: [],
       showDeletedRecordMessage: false,
-      removedRecordName: null
+      removedRecordName: null,
+      errorStatusCode: null,
+      errorMessage: null
     }
   },
   async fetch () {
-    this.tabcontent = await fetch(this.endpoint, this.endpointOptions).then(res => res.json())
+    this.tabcontent = await fetch(this.endpoint, this.endpointOptions)
+      .then((res) => {
+        if (res.ok) {
+          return res.json()
+        } else {
+          throw new Error('Something went wrong')
+        }
+      }).catch((error) => {
+        this.errorMessage = error.message
+      })
   },
   fetchOnServer: false,
   methods: {
