@@ -5,9 +5,9 @@ Stacks
 - BootstrapVue
 - SCSS
 
-CI/CD
-- Cloudflare Pages & Workers (Production)
-- Render.com (Development)
+Cloud application hosting providers
+- Cloudflare Pages (first-three-hours)
+- Render.com (Production & Development)
 
 ## Deployments
 
@@ -26,11 +26,14 @@ Development
 ## Build Setup
 
 ```bash
+# create .env file at the root dir to store API_SECRET_KEY
+The content of .env file should be as follow:
+
+API_SECRET_KEY=**EnterOnlyTheUniqueKeyHereWithoutBearer**
+
 # install dependencies
 $ npm install
 
 # serve with hot reload at localhost:8000
 $ npm run dev
 ```
-
-For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
