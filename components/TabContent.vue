@@ -68,9 +68,28 @@
                 Gender: {{ item.gender }} | Birthday: {{ item.birthday }}
               </p>
               <!-- Additional detail for Packs -->
-              <p v-else>
-                Lat: {{ item.lat }}, Lng: {{ item.lng }}
-              </p>
+              <div v-else>
+                <p>
+                  Lat: {{ item.lat }} | Lng: {{ item.lng }} <b-button
+                    v-b-modal="`modal-googlemapstatic-${item.id}`"
+                    variant="outline-secondary"
+                    size="sm"
+                  >
+                    View in map
+                  </b-button>
+                </p>
+                <ModalGoogleMapStatic
+                  :content="{
+                    id: `modal-googlemapstatic-${item.id}`,
+                    title: item.name,
+                    coordinate: {
+                      center: `${item.lat},${item.lng}`,
+                      lat: item.lat,
+                      lng: item.lng
+                    }
+                  }"
+                />
+              </div>
             </b-col>
 
             <b-col sm="12" md="4" class="d-flex align-items-center">
