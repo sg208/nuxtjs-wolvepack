@@ -6,6 +6,9 @@
 
 <script>
 export default {
-  layout: 'default'
+  layout: 'default',
+  head: {
+    title: 'Wolfpack collections'
+  }
 }
 </script>
