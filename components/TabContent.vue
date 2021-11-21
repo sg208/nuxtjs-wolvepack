@@ -117,7 +117,7 @@ export default {
         method: 'GET',
         headers: {
           'content-type': 'application/json',
-          Authorization: `Bearer ${process.env.API_SECRET_KEY}`
+          Authorization: `Bearer ${this.$config.apiSecret}`
         }
       },
       tabcontent: [],

@@ -51,8 +51,11 @@ export default {
   build: {
   },
 
-  // env
-  env: {
-    GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY
+  // publicRuntimeConfig & privateRuntimeConfig instead of dotenv
+  publicRuntimeConfig: {
+    apiSecret: process.env.API_SECRET_KEY
+  },
+  privateRuntimeConfig: {
+    apiSecret: process.env.API_SECRET_KEY
   }
 }
