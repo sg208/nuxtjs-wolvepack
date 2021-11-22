@@ -53,9 +53,11 @@ export default {
 
   // publicRuntimeConfig & privateRuntimeConfig instead of dotenv
   publicRuntimeConfig: {
-    apiSecret: process.env.API_SECRET_KEY
+    apiSecret: process.env.API_SECRET_KEY,
+    googleMapSecret: process.env.GOOGLE_MAP_STATIC_API_KEY
   },
   privateRuntimeConfig: {
-    apiSecret: process.env.API_SECRET_KEY
+    apiSecret: process.env.API_SECRET_KEY,
+    googleMapSecret: process.env.GOOGLE_MAP_STATIC_API_KEY
   }
 }
