@@ -11,45 +11,51 @@
         />
       </b-form-group>
 
-      <b-form-group v-if="content.title === 'wolve'" id="input-group-2" label-for="input-2">
-        <b-form-select
-          id="input-2"
-          v-model="form.gender"
-          aria-label="Gender"
-          :options="wolveGender"
-          required
-        />
-      </b-form-group>
+      <!-- Wolve related fields only -->
+      <template v-if="isWolveRelatedField">
+        <b-form-group id="input-group-2" label-for="input-2">
+          <b-form-select
+            id="input-2"
+            v-model="form.gender"
+            aria-label="Gender"
+            :options="wolveGender"
+            required
+          />
+        </b-form-group>
 
-      <b-form-group v-if="content.title === 'wolve'" id="input-group-3" label-for="input-3">
-        <b-form-input
-          id="input-3"
-          v-model="form.birthday"
-          aria-label="Birthday"
-          :placeholder="`Enter ${content.title}'s birthday (YYYY-MM-DD)`"
-          required
-        />
-      </b-form-group>
+        <b-form-group id="input-group-3" label-for="input-3">
+          <b-form-input
+            id="input-3"
+            v-model="form.birthday"
+            aria-label="Birthday"
+            :placeholder="`Enter ${content.title}'s birthday (YYYY-MM-DD)`"
+            required
+          />
+        </b-form-group>
+      </template>
 
-      <b-form-group v-if="content.title === 'pack'" id="input-group-4" label-for="input-4">
-        <b-form-input
-          id="input-4"
-          v-model="form.lat"
-          aria-label="Latitude"
-          placeholder="Enter latitude"
-          required
-        />
-      </b-form-group>
+      <!-- Pack related fields only -->
+      <template v-if="isPackRelatedField">
+        <b-form-group id="input-group-4" label-for="input-4">
+          <b-form-input
+            id="input-4"
+            v-model="form.lat"
+            aria-label="Latitude"
+            placeholder="Enter latitude"
+            required
+          />
+        </b-form-group>
 
-      <b-form-group v-if="content.title === 'pack'" id="input-group-5" label-for="input-5">
-        <b-form-input
-          id="input-5"
-          v-model="form.lng"
-          aria-label="Longitude"
-          placeholder="Enter longitude"
-          required
-        />
-      </b-form-group>
+        <b-form-group id="input-group-5" label-for="input-5">
+          <b-form-input
+            id="input-5"
+            v-model="form.lng"
+            aria-label="Longitude"
+            placeholder="Enter longitude"
+            required
+          />
+        </b-form-group>
+      </template>
 
       <b-button type="submit" variant="primary">
         Submit
@@ -63,8 +69,28 @@
 
 <script>
 export default {
-  // eslint-disable-next-line vue/require-prop-types
-  props: ['content'],
+  props: {
+    content: {
+      type: Object,
+      default: () => ({
+        id: Number,
+        title: String,
+        endpoint: {
+          type: Object,
+          default: () => ({
+            url: String,
+            headers: {
+              type: Object,
+              default: () => ({
+                'Content-Type': String,
+                Authorization: String
+              })
+            }
+          })
+        }
+      })
+    }
+  },
   data () {
     return {
       form: {
@@ -74,7 +100,9 @@ export default {
         lat: '',
         lng: ''
       },
-      wolveGender: [{ text: 'Select gender', value: null }, 'Female', 'Male']
+      wolveGender: [{ text: 'Select gender', value: null }, 'Female', 'Male'],
+      isWolveRelatedField: this.content.title === 'wolve',
+      isPackRelatedField: this.content.title === 'pack'
     }
   },
   methods: {
@@ -97,16 +125,14 @@ export default {
     },
     onReset (event) {
       event.preventDefault()
-      this.form.name = ''
-      this.form.gender = null
-      this.form.birthday = ''
-      this.form.lat = ''
-      this.form.lng = ''
+      this.form = {
+        name: '',
+        gender: null,
+        birthday: '',
+        lat: '',
+        lng: ''
+      }
     }
   }
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>

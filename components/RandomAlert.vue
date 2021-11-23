@@ -8,8 +8,15 @@
 
 <script>
 export default {
-  // eslint-disable-next-line vue/require-prop-types
-  props: ['content'],
+  props: {
+    content: {
+      type: Object,
+      default: () => ({
+        dismissible: Number,
+        text: String
+      })
+    }
+  },
   data () {
     return {
       dismissCountDown: this.content.dismissible ? 5 : 0
