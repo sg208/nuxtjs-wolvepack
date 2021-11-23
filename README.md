@@ -1,41 +1,46 @@
 # nuxtjs-wolvepack
 Stacks
-- NuxtJS
+- NuxtJS (with vue@2.6.14)
 - Javascript
-- BootstrapVue
-- SCSS
+- BootstrapVue (SCSS)
+- Vuex (currently state/mapState only)
 
-Cloud application hosting providers
+DevOps Cloud Platform (CI/CD)
 - Cloudflare Pages (first-three-hours)
-- Render.com (Production & Development)
+- Render.com (production & development)
 
-## Deployments
+## Environments
 
 The first three hours of development
 * Preview URL: https://b72d070f.nuxtjs-wolvepack.pages.dev/
 * Branch: [first-three-hours](https://github.com/sg208/nuxtjs-wolvepack/tree/first-three-hours)
 
-Production
+Production (latest features and fixes)
 * Preview URL: https://wolfpack.engg.me
-* Branch: Master (latest version with latest features and fixes)
+* Branch: Master
 
-Development
+Development (future fixes and enhancements)
 * Preview URL: https://dev-wolfpack.engg.me
 * Branch: [development](https://github.com/sg208/nuxtjs-wolvepack/tree/development)
 
 ## Build Setup
 
 ```bash
-# create .env file at the root dir to store API_SECRET_KEY
-The content of .env file should be as follow and feel free to ask for the keys:
+# Create .env file at the root dir to store all api keys to
+# render locally. They are set as environment variables to
+# services at runtime, builds and deploys. The keys can be found
+# on select components using Chrome DevTools while inspecting
+# the network activity, in production or development environments.
+# Best hint I can share without revealing the actual keys publicly.
+# The content of .env file should be as follow.
 
 API_SECRET_KEY=**EnterOnlyTheUniqueKeyHereWithoutBearer**
 GOOGLE_MAP_STATIC_API_KEY=**EnterUniqueApiHere**
 GOOGLE_MAP_EMBED_API_KEY=**EnterUniqueApiHere**
 
-# install dependencies
+# Install dependencies
 $ npm install
 
-# serve with hot reload at localhost:8000
+# Serve with hot reload at localhost:8000
 $ npm run dev
 ```
