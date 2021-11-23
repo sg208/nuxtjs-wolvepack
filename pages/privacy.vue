@@ -1,12 +1,12 @@
 <template>
-  <Main />
+  <MainPrivacy />
 </template>
 
 <script>
 export default {
   layout: 'default',
   head: {
-    title: 'Wolfpack Collections'
+    title: 'Wolfpack Collections: Privacy Policy'
   }
 }
 </script>

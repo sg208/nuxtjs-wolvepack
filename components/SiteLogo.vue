@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link to="/" aria-label="Overview page">
+  <nuxt-link to="/" aria-label="Back to start">
     <img src="~/assets/images/wolfpack-logo.png" class="logo" alt="Wolfpack logo">
   </nuxt-link>
 </template>

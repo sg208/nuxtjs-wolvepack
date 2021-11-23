@@ -16,8 +16,22 @@
 </template>
 <script>
 export default {
-  // eslint-disable-next-line vue/require-prop-types
-  props: ['content']
+  props: {
+    content: {
+      type: Object,
+      default: () => ({
+        id: Number,
+        title: String,
+        coordinate: () => ({
+          type: Object,
+          default: () => ({
+            lat: String,
+            lng: String
+          })
+        })
+      })
+    }
+  }
 }
 </script>
 

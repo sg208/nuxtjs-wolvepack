@@ -1,9 +1,9 @@
 <template>
-  <footer>
-    <div class="container">
-      Crafted with love by <a href="https://github.com/sg208" target="_blank">github.com/sg208</a> | {{ currentYear }}
-    </div>
-  </footer>
+  <div class="container">
+    Crafted with love by <a href="https://github.com/sg208" target="_blank">github.com/sg208</a> | {{ currentYear }} | <NuxtLink to="/privacy">
+      Privacy
+    </NuxtLink>
+  </div>
 </template>
 
 <script>
@@ -17,15 +17,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-footer {
-  border-top: 1px solid #ccc;
-  height: 10rem;
-  margin-top: 2rem;
-  background-color: #efefef;
-  color: darkgray;
-
-  .container {
+.container {
     margin-top: 2rem;
   }
-}
 </style>

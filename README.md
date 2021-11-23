@@ -27,9 +27,11 @@ Development
 
 ```bash
 # create .env file at the root dir to store API_SECRET_KEY
-The content of .env file should be as follow:
+The content of .env file should be as follow and feel free to ask for the keys:
 
 API_SECRET_KEY=**EnterOnlyTheUniqueKeyHereWithoutBearer**
+GOOGLE_MAP_STATIC_API_KEY=**EnterUniqueApiHere**
+GOOGLE_MAP_EMBED_API_KEY=**EnterUniqueApiHere**
 
 # install dependencies
 $ npm install

@@ -127,15 +127,29 @@
 
 <script>
 export default {
-  // eslint-disable-next-line vue/require-prop-types
-  props: ['tabdetail'],
+  props: {
+    tabdetail: {
+      type: Array,
+      default: () => [{
+        id: String,
+        text: {
+          type: Object,
+          default: () => ({
+            heading: String,
+            singular: String,
+            plural: String
+          })
+        }
+      }]
+    }
+  },
   data () {
     return {
       endpoint: `https://join.wolfpackit.nl/api/v1/${this.tabdetail.text.plural}`,
       endpointOptions: {
         method: 'GET',
         headers: {
-          'content-type': 'application/json',
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${this.$config.apiSecret}`
         }
       },
