@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header role="banner">
     <div class="container">
       <SiteLogo />
     </div>

@@ -1,7 +1,9 @@
 <template>
-  <footer>
+  <footer role="contentinfo">
     <div class="container">
-      Crafted with love by <a href="https://github.com/sg208" target="_blank">github.com/sg208</a> | {{ currentYear }}
+      Crafted with love by <a href="https://github.com/sg208" target="_blank">github.com/sg208</a> | {{ currentYear }} | <NuxtLink to="/privacy">
+        Privacy
+      </NuxtLink>
     </div>
   </footer>
 </template>
