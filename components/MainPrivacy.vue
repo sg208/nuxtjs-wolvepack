@@ -1,8 +1,6 @@
 <template>
   <div class="container">
-    <b-button variant="outline-secondary" size="lg" to="/" class="gap-down">
-      Back to Start
-    </b-button>
+    <ButtonCTA :content="buttonBackToSearch" />
     <h1>Privacy Policy</h1>
     <h2>AN OVERVIEW OF DATA PROTECTION</h2>
     <h3>General</h3>
@@ -85,11 +83,21 @@
     <p>We transmit personally identifiable data to third parties only to the extent required to fulfill the terms of your contract with us, for example, to banks entrusted to process your payments.</p>
     <p>Your data will not be transmitted for any other purpose unless you have given your express permission to do so. Your data will not be disclosed to third parties for advertising purposes without your express consent.</p>
     <p>The basis for data processing is Art. 6 (1) (b) of the EU DSGVOGDPR, which allows the processing of data to fulfill a contract or for measures preliminary to a contract.</p>
-    <b-button variant="outline-secondary" size="lg" to="/" class="gap">
-      Back to Start
-    </b-button>
+    <ButtonCTA :content="buttonBackToSearch" />
   </div>
 </template>
+
+<script>
+export default {
+  data () {
+    return {
+      buttonBackToSearch: {
+        text: 'Back to search'
+      }
+    }
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 .gap {

@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <b-alert variant="danger" :show="dismissCountDown" :dismissible="content.dismissible || false">
-      {{ content.text }}
-    </b-alert>
-  </div>
+  <b-alert variant="danger" :show="dismissCountDown" :dismissible="content.dismissible || false">
+    {{ content.text }}
+  </b-alert>
 </template>
 
 <script>
