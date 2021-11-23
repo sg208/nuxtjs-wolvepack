@@ -3,7 +3,7 @@ Stacks
 - NuxtJS (with vue@2.6.14)
 - Javascript
 - BootstrapVue (SCSS)
-- Vuex (currently utilizing state/mapState)
+- Vuex (currently state/mapState only)
 
 DevOps Cloud Platform (CI/CD)
 - Cloudflare Pages (first-three-hours)
@@ -26,16 +26,21 @@ Development (future fixes and enhancements)
 ## Build Setup
 
 ```bash
-# create .env file at the root dir to store all secret keys to be able to render locally. They are currently set as environment variables to services at runtime, as well as during builds and deploys. They keys can be found on select components using Google Chrome Dev Tools while inspecting the network activity, in either production or development environments. Best hint I can give without revealing the actual keys publicly :)
-The content of .env file should be as follow:
+# Create .env file at the root dir to store all api keys to
+# render locally. They are set as environment variables to
+# services at runtime, builds and deploys. The keys can be found
+# on select components using Chrome DevTools while inspecting
+# the network activity, in production or development environments.
+# Best hint I can share without revealing the actual keys publicly.
+# The content of .env file should be as follow.
 
 API_SECRET_KEY=**EnterOnlyTheUniqueKeyHereWithoutBearer**
 GOOGLE_MAP_STATIC_API_KEY=**EnterUniqueApiHere**
 GOOGLE_MAP_EMBED_API_KEY=**EnterUniqueApiHere**
 
-# install dependencies
+# Install dependencies
 $ npm install
 
-# serve with hot reload at localhost:8000
+# Serve with hot reload at localhost:8000
 $ npm run dev
 ```
