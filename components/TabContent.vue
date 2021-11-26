@@ -9,12 +9,13 @@
     <b-alert v-else-if="$fetchState.error" role="alert" variant="danger" show>
       An error has occurred while retrieving {{ tabdetail.text.plural }} data. <em>({{ $fetchState.error.message }}, error {{ $fetchState.error.statusCode }})</em>
     </b-alert>
+    <!-- When data is good -->
     <div v-else>
       <b-row class="mini-gap">
         <b-col sm="12" md="9">
-          <h1 class="display-4">
+          <h2>
             {{ tabdetail.text.heading }} collection
-          </h1>
+          </h2>
         </b-col>
         <b-col class="d-flex align-items-center" sm="12" md="3">
           <b-button

@@ -1,0 +1,28 @@
+body {
+    overflow: scroll;
+}
+
+/// header specific
+header {
+    padding: 2rem 0;
+    color: white;
+    border-bottom: .5rem solid #80ED99;
+}
+
+/// Footer specific
+footer {
+    border-top: 1px solid #ccc;
+    height: 10rem;
+    margin-top: 2rem;
+    background-color: #efefef;
+    color: darkgray;
+}
+
+/// All others
+.gap {
+    margin-top: 2.5rem;
+
+    &-down {
+        margin-bottom: 2.5rem;
+    }
+}

@@ -92,7 +92,7 @@ export default {
   data () {
     return {
       buttonBackToSearch: {
-        text: 'Back to search'
+        text: 'Back to start'
       }
     }
   }
@@ -100,13 +100,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.gap {
-    margin-top: 2.5rem;
-
-    &-down {
-        margin-bottom: 2.5rem;
-    }
-}
 ul {
     &.no-style {
         list-style: none;
