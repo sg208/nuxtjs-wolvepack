@@ -4,9 +4,9 @@
 
 <script>
 export default {
-  layout: 'default',
+  layout: 'landing-main',
   head: {
-    title: 'Wolfpack Collections: Privacy Policy'
+    title: 'Wolfpack: Privacy Policy'
   }
 }
 </script>

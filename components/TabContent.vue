@@ -1,21 +1,21 @@
 <template>
-  <b-tab :title="tabdetail.text.heading">
-    <RandomAlert
-      v-if="$fetchState.pending"
-      :content="{ text: `Fetching ${tabdetail.text.plural}`}"
-    />
-    <RandomAlert
-      v-else-if="$fetchState.error"
-      :content="{
-        text: `An error occurred, while fetching ${tabdetail.text.plural} data :(`
-      }"
-    />
+  <b-tab :title="tabdetail.text.heading" class="padding-bottom-5">
+    <!-- Alert when $fetchState.pending is true -->
+    <b-alert v-if="$fetchState.pending" role="alert" variant="secondary" class="fetching-container" show>
+      <b-icon icon="arrow-clockwise" animation="spin" font-scale="8" />
+      <p>We're getting {{ tabdetail.text.plural }} data...</p>
+    </b-alert>
+    <!-- Alert when $fetchState.error is true -->
+    <b-alert v-else-if="$fetchState.error" role="alert" variant="danger" show>
+      An error has occurred while retrieving {{ tabdetail.text.plural }} data. <em>({{ $fetchState.error.message }}, error {{ $fetchState.error.statusCode }})</em>
+    </b-alert>
+    <!-- When data is good -->
     <div v-else>
       <b-row class="mini-gap">
         <b-col sm="12" md="9">
-          <h1 class="display-4">
-            List of {{ tabdetail.text.heading }}
-          </h1>
+          <h2>
+            {{ tabdetail.text.heading }} collection
+          </h2>
         </b-col>
         <b-col class="d-flex align-items-center" sm="12" md="3">
           <b-button
@@ -65,7 +65,7 @@
               </h2>
               <!-- Additional detail for Wolves -->
               <p v-if="item.gender">
-                Gender: {{ item.gender }} | Birthday: {{ item.birthday }}
+                Gender: {{ item.gender }} | Birthday: {{ item.birthday }} {{ tabcontent.status }}
               </p>
               <!-- Additional detail for Packs -->
               <div v-else>
@@ -129,8 +129,8 @@
 export default {
   props: {
     tabdetail: {
-      type: Array,
-      default: () => [{
+      type: Object,
+      default: () => ({
         id: String,
         text: {
           type: Object,
@@ -140,7 +140,7 @@ export default {
             plural: String
           })
         }
-      }]
+      })
     }
   },
   data () {
@@ -162,17 +162,12 @@ export default {
   },
   async fetch () {
     this.tabcontent = await fetch(this.endpoint, this.endpointOptions)
-      .then((res) => {
-        if (res.ok) {
-          return res.json()
-        } else {
-          throw new Error('Something went wrong')
-        }
-      }).catch((error) => {
-        this.errorMessage = error.message
+      .then((response) => {
+        return response.json()
       })
   },
   fetchOnServer: false,
+  fetchDelay: 1500,
   methods: {
     async removeRecord (id, method = 'get', name) {
       await fetch(`${this.endpoint}/${id}`, {
@@ -192,14 +187,6 @@ export default {
         size: 'md',
         okTitle: 'OK, thx'
       })
-        .then((clickValue) => {
-          // eslint-disable-next-line no-console
-          console.log(clickValue)
-        })
-        .catch((err) => {
-          // eslint-disable-next-line no-console
-          console.log(err)
-        })
     },
     confirmRemoveRecord (id, apiMethod, name, collection) {
       this.$bvModal.msgBoxConfirm(`Please confirm you want to delete ${name} from the ${collection} collection?`, {
@@ -217,10 +204,6 @@ export default {
           if (clickResult) {
             this.removeRecord(id, apiMethod, name)
           }
-        })
-        .catch((err) => {
-          // eslint-disable-next-line no-console
-          console.log(err)
         })
     }
   }
@@ -244,5 +227,12 @@ export default {
 }
 .padding-bottom-1 {
   padding-bottom: 1rem;
+}
+.padding-bottom-5 {
+  padding-bottom: 5rem;
+}
+.fetching-container {
+  text-align: center;
+  padding: 5rem 0;
 }
 </style>
