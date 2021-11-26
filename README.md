@@ -6,8 +6,9 @@ Stacks
 - Vuex (currently state/mapState only)
 
 DevOps Cloud Platform (CI/CD)
-- Cloudflare Pages (first-three-hours)
 - Render.com (production & development)
+- Cloudflare Pages (first failover for production & development)
+- Vercel.com (second failover for production & development)
 
 ## Environments
 

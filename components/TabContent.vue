@@ -129,8 +129,8 @@
 export default {
   props: {
     tabdetail: {
-      type: Array,
-      default: () => [{
+      type: Object,
+      default: () => ({
         id: String,
         text: {
           type: Object,
@@ -140,7 +140,7 @@ export default {
             plural: String
           })
         }
-      }]
+      })
     }
   },
   data () {
