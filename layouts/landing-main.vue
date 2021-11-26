@@ -1,10 +1,10 @@
 <template>
   <div>
-    <header role="banner">
+    <header role="banner" class="header">
       <Header />
     </header>
     <Nuxt role="main" keep-alive />
-    <footer role="contentinfo">
+    <footer role="contentinfo" class="footer">
       <Footer />
     </footer>
   </div>
