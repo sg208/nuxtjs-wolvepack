@@ -1,14 +1,14 @@
 # nuxtjs-wolvepack
-Stacks
+## Stacks
 - NuxtJS (with vue@2.6.14)
 - Javascript
 - BootstrapVue (SCSS)
 - Vuex (currently state/mapState only)
 
-DevOps Cloud Platform (CI/CD)
-- Render.com (production & development)
+## DevOps Cloud Platforms
+- Render (production & development)
 - Cloudflare Pages (first failover for production & development)
-- Vercel.com (second failover for production & development)
+- Vercel (second failover for production & development)
 
 ## Environments
 
@@ -28,16 +28,19 @@ Development (future fixes and enhancements)
 
 ```bash
 # Create .env file at the root dir to store all api keys to
-# render locally. They are set as environment variables to
-# services at runtime, builds and deploys. The keys can be found
-# on select components using Chrome DevTools while inspecting
-# the network activity, in production or development environments.
-# Best hint I can share without revealing the actual keys publicly.
-# The content of .env file should be as follow.
+# render locally. Add .env to your gitignore as well. They are
+# set as environment variables to services at runtime, builds
+# and deploys. The keys can be found on select components using
+# Chrome DevTools while inspecting the network activity, in
+# production or development environments. Best hint I can share
+# without revealing the actual keys publicly. If you deploy,
+# you need to add them as .env variables to your DevOps platform.
 
-API_SECRET_KEY=**EnterOnlyTheUniqueKeyHereWithoutBearer**
-GOOGLE_MAP_STATIC_API_KEY=**EnterUniqueApiHere**
-GOOGLE_MAP_EMBED_API_KEY=**EnterUniqueApiHere**
+# The content of .env file should be as follow.
+API_BASE_URL=*******ApiBaseUrlHere*******
+API_SECRET_KEY=*******SecretKeyHereWithoutBearer*******
+GOOGLE_MAP_STATIC_API_KEY=*******GoogleMapStaticApiKeyHere*******
+GOOGLE_MAP_EMBED_API_KEY=*******GoogleMapEmbedApiKeyHere*******
 
 # Install dependencies
 $ npm install
