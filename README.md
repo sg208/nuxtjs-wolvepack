@@ -6,9 +6,9 @@
 - Vuex (currently state/mapState only)
 
 ## DevOps Cloud Platforms
-- Render.com (production & development)
+- Render (production & development)
 - Cloudflare Pages (first failover for production & development)
-- Vercel.com (second failover for production & development)
+- Vercel (second failover for production & development)
 
 ## Environments
 
@@ -34,7 +34,7 @@ Development (future fixes and enhancements)
 # Chrome DevTools while inspecting the network activity, in
 # production or development environments. Best hint I can share
 # without revealing the actual keys publicly. If you deploy,
-# you need to add them as .env variables.
+# you need to add them as .env variables to your DevOps platform.
 
 # The content of .env file should be as follow.
 API_BASE_URL=*******ApiBaseUrlHere*******
