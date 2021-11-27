@@ -145,7 +145,8 @@ export default {
   },
   data () {
     return {
-      endpoint: `https://join.wolfpackit.nl/api/v1/${this.tabdetail.text.plural}`,
+      // endpoint: `${this.$config.apiBaseUrl}${this.tabdetail.text.plural}`,
+      endpoint: this.$config.apiBaseUrl + this.tabdetail.text.plural,
       endpointOptions: {
         method: 'GET',
         headers: {
