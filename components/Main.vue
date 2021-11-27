@@ -5,7 +5,7 @@
         <h1>
           The wolves packs collection
         </h1>
-        <p>Focus on your core task, not keep managing your data.</p>
+        <p>Manage wolves and packs data easily in one place.</p>
       </div>
     </b-jumbotron>
     <div class="container">
@@ -30,7 +30,8 @@ export default {
 
 <style lang="scss" scoped>
 .jumbotron {
-  background: linear-gradient(119deg, rgba(204,204,204,1) 21%, rgba(239,239,239,1) 80%);
+  background: rgb(239,239,239);
+  background: radial-gradient(circle, rgba(239,239,239,1) 20%, rgba(204,204,204,1) 88%);
   border-radius: 0px;
 }
 </style>
